@@ -1,3 +1,6 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap-icons/font/bootstrap-icons.min.css';
+
 body {
     background: rgb(46, 63, 87);
     background: linear-gradient(
@@ -229,4 +232,19 @@ body {
   .mainPage img {
     width: 200px;
   }
+
+  a {
+    text-decoration: none;
+  }
   
+  .card {
+    background-color: transparent;
+    border-width: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .artist-name {
+    cursor: pointer;
+    text-decoration: underline;
+  }

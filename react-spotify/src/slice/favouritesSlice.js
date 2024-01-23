@@ -15,13 +15,13 @@ const favourites_slice = createSlice(
             removeFavourite(state, action) {
                 return {
                     ...state,
-                    favourites: state.favourites.filter(u => u.title !== action.payload)    
+                    favourites: state.favourites.filter(u => u.title !== action.payload)
                 }
-                
+
             }
         }
     }
-)    
+)
 
     const {actions, reducer} = favourites_slice;
     export const {addFavourite,removeFavourite} = actions;

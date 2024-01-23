@@ -1,10 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit'
 import favouritesReducer from '../slice/favouritesSlice'
-import jobSearchReducer  from '../slice/jobSlice'
+import rockReducer  from '../slice/rockSlice'
 
 export const store = configureStore({
     reducer : {
         favourites : favouritesReducer,
-        jobSearch : jobSearchReducer
+        rock : rockReducer,
+        // pop: popReducer,
+        // hipPop: hipPopReducer
     }
 })

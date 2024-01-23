@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    jobSearch : [],
+    rockSearch : [],
     loading : false,
     error : ''
 }
 
-const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
+const baseEndpoint = "https://striveschool-api.herokuapp.com/api/deezer/search";
 
 export const getSearchedJob = createAsyncThunk("searchedJob/fetch",async (query) => {
 
@@ -15,9 +15,9 @@ export const getSearchedJob = createAsyncThunk("searchedJob/fetch",async (query)
     return response.json()
 })
 
-const jobSearch_slice = createSlice(
+const rockSearch_slice = createSlice(
     {
-        name: 'jobSearch',
+        name: 'rockSearch',
         initialState : initialState,
         reducers: {},
         extraReducers: builder => {
@@ -30,13 +30,13 @@ const jobSearch_slice = createSlice(
             })
             .addCase(getSearchedJob.fulfilled, (state,action)=>{
                 state.loading = false
-                state.jobSearch = action.payload.data
+                state.rockSearch = action.payload.data
             })
         }
     }
-)    
+)
 
-    const {reducer} = jobSearch_slice;
+    const {reducer} = rockSearch_slice;
    /*  export const {addFavourite,removeFavourite} = actions; */
 
-    export default reducer; 
+    export default reducer;
