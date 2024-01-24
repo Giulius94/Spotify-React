@@ -36,8 +36,7 @@ export default function PlayerComp() {
   return (
    <Container fluid className="fixed-bottom bg-container pt-1 d-flex">
    <div className='col-md-2 offset-md-2 text-white text-center'>
-      <p className='mb-0'>{numeroBranoAttuale && numeroBranoAttuale[currentIndex].title_short}</p>
-      <img src={numeroBranoAttuale[currentIndex].album.cover_small} alt="cover"/>
+      <p className='mb-0'>{numeroBranoAttuale && numeroBranoAttuale[currentIndex].title}</p>
         </div>
       <div className="col-12 col-md-6 mainPage mt-2">
         <AudioPlayer
@@ -48,6 +47,9 @@ export default function PlayerComp() {
           showSkipControls
         // other props here
         />
+      </div>
+      <div className='col-md-2 offset-md-1 text-white'>
+      <img src={numeroBranoAttuale && numeroBranoAttuale[currentIndex].album.cover_small} alt="cover"/>
       </div>
 
     </Container>

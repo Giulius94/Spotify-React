@@ -268,9 +268,10 @@ body {
 
 .rhap_container {
   background-color: #282828!important;
-  
+  padding: 0!important;
 }
 
 .rhap_time {
   color: #e1dbdb!important;
 }
+
