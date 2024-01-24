@@ -1,18 +1,28 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import TracksCreatorComp from '../components/TracksCreatorComp';
+import { useDispatch } from 'react-redux';
+import { setCurrentSrc, setBranoCorrente, setListaBrani } from '../slice/currentSrc';
 
 export default function AlbumPage() {
 
   const { albumID } = useParams();
   const [singleAlbum, setSingleAlbum] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
 
   useEffect(()  => {
-    axios.get('https://striveschool-api.herokuapp.com/api/deezer/album/'+albumID,
-    )
+    axios.get('https://striveschool-api.herokuapp.com/api/deezer/album/' + albumID, {
+      headers: {
+        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
+        'X-RapidAPI-Key': '9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0',
+        'Content-Type': 'application/json',
+        /* 'User-Agent': 'PostmanRuntime/7.35.0' */
+      }
+    })
     .then(function (response) {
         // handle success
         setSingleAlbum(response.data);
@@ -23,9 +33,24 @@ export default function AlbumPage() {
         console.log(error);
     })
 
-  },[])
+  },[albumID])
 
-  console.log(singleAlbum)
+
+  const handlerClickPlay = (singleAlbum) =>  {
+    // console.log(singleAlbum.tracks.data[0].preview)
+    dispatch(setCurrentSrc(singleAlbum.tracks.data[0].preview))
+    dispatch(setBranoCorrente(0))
+    dispatch(setListaBrani(singleAlbum.tracks.data))
+    // dispatch(setListaBrani(["ciao", "come", "stai"]))
+    
+    
+  }
+
+  useEffect(()  => {
+    singleAlbum && dispatch(setListaBrani(singleAlbum.tracks.data)) 
+
+  },[singleAlbum, dispatch])
+
   return (
     <div className="col-12 col-md-9 offset-md-3 mainPage">
       {singleAlbum &&
@@ -41,7 +66,7 @@ export default function AlbumPage() {
                     <p className="artist-name" onClick={() => navigate('/artist_page/' + singleAlbum.artist.id)}>{singleAlbum.artist.name}</p>
                   </div>
                   <div className="mt-4 text-center">
-                    <Button id="btnPlay" variant="success" type="button">
+                    <Button id="btnPlay" variant="success" type="button" onClick={() => handlerClickPlay(singleAlbum)}>
                       Play
                     </Button>
                   </div>
