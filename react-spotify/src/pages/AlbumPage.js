@@ -33,7 +33,7 @@ export default function AlbumPage() {
         console.log(error);
     })
 
-  },[albumID])
+  },[])
 
 
   const handlerClickPlay = (singleAlbum) =>  {
@@ -46,10 +46,10 @@ export default function AlbumPage() {
     
   }
 
-  useEffect(()  => {
-    singleAlbum && dispatch(setListaBrani(singleAlbum.tracks.data)) 
+  // useEffect(()  => {
+  //   singleAlbum && dispatch(setListaBrani(singleAlbum.tracks.data)) 
 
-  },[singleAlbum, dispatch])
+  // },[singleAlbum])
 
   return (
     <div className="col-12 col-md-9 offset-md-3 mainPage">
